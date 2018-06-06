@@ -18,6 +18,7 @@
   "homepage": "https://github.com/cmoneil/bamazon#readme",
   "dependencies": {
     "inquirer": "^6.0.0",
-    "mysql": "^2.15.0"
+    "mysql": "^2.15.0",
+    "npm": "^6.1.0"
   }
 }
