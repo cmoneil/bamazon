@@ -152,7 +152,7 @@ function addInventory() {
 
                     var addInventory = (parseInt(results[0].stock_quantity) + parseInt(answer.quantityAdd))
 
-                    console.log(results[0].product_name, addInventory)
+                    console.log(`Item: ${results[0].product_name} |New quantity: ${addInventory}`)
                     if (err) throw err;
                     
                     connection.query("UPDATE products SET ? WHERE ?",
