@@ -72,7 +72,7 @@ function saleProducts() {
 
         var choiceArray = [];
         for (var i = 0; i < results.length; i++) {
-            console.log(`ID#: ${results[i].item_id} |Item name: ${results[i].product_name} |Price: $${results[i].price} |Quantity: ${results[i].stock_quantity}`);
+            console.log(`ID#: ${results[i].id} |Item name: ${results[i].product_name} |Price: $${results[i].price} |Quantity: ${results[i].stock_quantity}`);
         }
         runItBack();
     })
@@ -83,7 +83,7 @@ function lowInventory() {
     connection.query(query, function (err, results) {
         for (var i = 0; i < results.length; i++) {
             console.log(`
-        ID#: ${results[i].item_id} |Item name: ${results[i].product_name} |Price: $${results[i].price} |Quantity: ${results[i].stock_quantity}
+        ID#: ${results[i].id} |Item name: ${results[i].product_name} |Price: $${results[i].price} |Quantity: ${results[i].stock_quantity}
         -----------------------------------------------------`);
         }
         runItBack();
@@ -148,7 +148,7 @@ function addInventory() {
         ])
         .then(function (answer) {
             connection.query("SELECT * FROM products WHERE ?",
-                { item_id: answer.itemAdd }, function (err, results) {
+                { id: answer.itemAdd }, function (err, results) {
 
                     var addInventory = (parseInt(results[0].stock_quantity) + parseInt(answer.quantityAdd))
 
@@ -161,7 +161,7 @@ function addInventory() {
                             stock_quantity: addInventory
                         },
                         {
-                            item_id: answer.itemAdd
+                            id: answer.itemAdd
                         }],
                         function (err, results) {
 

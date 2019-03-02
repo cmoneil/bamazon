@@ -23,8 +23,8 @@ function start() {
 
         var choiceArray = [];
         for (var i = 0; i < results.length; i++) {
-            console.log(`ID#: ${results[i].item_id} |Item name: ${results[i].product_name} |Price: $${results[i].price}`);
-        }
+            console.log(`ID#: ${results[i].id} |Item name: ${results[i].product_name} |Price: $${results[i].price}`);
+        }1
         askItem(results);
     })
 
@@ -64,7 +64,7 @@ function askItem() {
         ])
         .then(function (answer) {
             connection.query("SELECT * FROM products WHERE ?",
-                { item_id: answer.item }, function (err, results) {
+                { id: answer.item }, function (err, results) {
                     var totalPrice = (results[0].price * answer.quantity).toFixed(2);
 
                     var newInventory = (results[0].stock_quantity - answer.quantity)
@@ -76,7 +76,7 @@ function askItem() {
                     }
                     else (
 
-                        console.log(`ID#: ${results[0].item_id} |Item name: ${results[0].product_name} |Price: $${(results[0].price).toFixed(2)} each
+                        console.log(`ID#: ${results[0].id} |Item name: ${results[0].product_name} |Price: $${(results[0].price).toFixed(2)} each
 
                     Total price: $${totalPrice}
                     `))
@@ -87,7 +87,7 @@ function askItem() {
                                 stock_quantity: newInventory
                             },
                             {
-                                item_id: answer.item
+                                id: answer.item
                             }
                         ], )
 
@@ -97,7 +97,5 @@ function askItem() {
         })
 }
 
-// function inventory(){
-
-// }
 start()
+
